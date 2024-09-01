@@ -68,4 +68,4 @@ def completed_tasks():
     return render_template('completed_tasks.html', todos=completed_todos)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)
