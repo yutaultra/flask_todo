@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>タスクの編集</h1>
+    <form action="{{ url_for('edit_task', todo_id=request.view_args['todo_id']) }}" method="POST" class="edit-task-form">
+        <label for="todo">タスク:</label>
+        <input type="text" name="todo" value="{{ todo.task }}" required>
+        <label for="deadline">期限:</label>
+        <input type="datetime-local" name="deadline" value="{{ todo.deadline }}" required>
+        <button type="submit">更新</button>
+    </form>
+{% endblock %}

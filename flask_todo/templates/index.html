@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>To-Do リスト</h1>
+    <a href="{{ url_for('new_task') }}"><button>新しいタスク</button></a>
+    <a href="{{ url_for('completed_tasks') }}"><button>完了済みタスクを見る</button></a>
+    <ul id="taskList">
+        {% for todo in todos %}
+            <li class="task-item" style="opacity: 0;">
+                <div class="task-text">{{ todo.task }}</div>
+                <div class="creation-date">作成日時: {{ todo.timestamp }}</div>
+                <div class="deadline">
+                    期限: 
+                    {% if todo.expired %}
+                        <span style="color: red;">期限切れ</span>
+                    {% else %}
+                        {{ todo.deadline }}
+                    {% endif %}
+                </div>
+                <div>
+                    <a href="{{ url_for('edit_task', todo_id=loop.index0) }}"><button>編集</button></a>
+                    <form class="complete-form" action="{{ url_for('complete_task', todo_id=loop.index0) }}" method="POST" style="display:inline;">
+                        <button type="submit">完了</button>
+                    </form>
+                    <form class="delete-form" action="{{ url_for('delete_todo', todo_id=loop.index0) }}" method="POST" style="display:inline;">
+                        <button type="submit" style="background-color: #dc3545;">削除</button>
+                    </form>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 各タスク項目をフェードイン
+            const tasks = document.querySelectorAll('.task-item');
+            tasks.forEach((task, index) => {
+                setTimeout(() => {
+                    task.style.transition = 'opacity 0.5s';
+                    task.style.opacity = 1;
+                }, index * 100); // 100ms の間隔でフェードイン
+            });
+
+            // タスク完了時にフェードアウト
+            const completeForms = document.querySelectorAll('.complete-form');
+            completeForms.forEach((form) => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const taskItem = form.closest('.task-item');
+                    taskItem.style.transition = 'opacity 0.5s';
+                    taskItem.style.opacity = 0;
+                    setTimeout(() => {
+                        form.submit();
+                    }, 500); // フェードアウト後にフォームを送信
+                });
+            });
+
+            // タスク削除時にフェードアウト
+            const deleteForms = document.querySelectorAll('.delete-form');
+            deleteForms.forEach((form) => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const taskItem = form.closest('.task-item');
+                    taskItem.style.transition = 'opacity 0.5s';
+                    taskItem.style.opacity = 0;
+                    setTimeout(() => {
+                        form.submit();
+                    }, 500); // フェードアウト後にフォームを送信
+                });
+            });
+        });
+    </script>
+{% endblock %}
+

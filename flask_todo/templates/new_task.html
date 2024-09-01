@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>新しいタスク</h1>
+    <form id="taskForm" action="{{ url_for('new_task') }}" method="POST" class="new-task-form">
+        <label for="todo">タスク:</label>
+        <input type="text" name="todo" placeholder="タスクを入力" required>
+        <label for="deadline">期限:</label>
+        <input type="datetime-local" name="deadline" required>
+        <button type="submit">追加</button>
+    </form>
+{% endblock %}

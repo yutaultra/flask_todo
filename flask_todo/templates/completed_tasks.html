@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>完了済みタスク</h1>
+    <a href="{{ url_for('index') }}"><button>To-Doリストに戻る</button></a>
+    <form action="{{ url_for('delete_all_completed') }}" method="POST" style="display:inline;">
+        <button type="submit" style="background-color: #dc3545; margin-left: 10px;">すべて削除</button>
+    </form>
+    <ul id="completedTaskList">
+        {% for todo in todos %}
+            <li class="task-item" style="opacity: 1;">
+                <div class="task-text">{{ todo.task }}</div>
+                <div class="creation-date">作成日時: {{ todo.timestamp }}</div>
+                <div class="deadline">完了日時: {{ todo.deadline }}</div>
+                <div>
+                    <form class="restore-form" action="{{ url_for('restore_task', todo_id=loop.index0) }}" method="POST" style="display:inline;">
+                        <button type="submit">元に戻す</button>
+                    </form>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 元に戻すボタンをクリックしたときにフェードアウト
+            const restoreForms = document.querySelectorAll('.restore-form');
+            restoreForms.forEach((form) => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const taskItem = form.closest('.task-item');
+                    taskItem.style.transition = 'opacity 0.5s';
+                    taskItem.style.opacity = 0;
+                    setTimeout(() => {
+                        form.submit();
+                    }, 500); // フェードアウト後にフォームを送信
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+

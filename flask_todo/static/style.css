@@ -1,0 +1,159 @@
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+h1 {
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+/* Button Styles */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* List Styles */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f7f9fc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+li span {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+li form {
+  display: inline-block;
+}
+
+li button {
+  background-color: #28a745;
+  margin-left: 5px;
+}
+
+li button:hover {
+  background-color: #218838;
+}
+
+/* Page-specific styles */
+.new-task-form,
+.edit-task-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-task-form input,
+.edit-task-form input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.new-task-form button,
+.edit-task-form button {
+  align-self: flex-end;
+}
+
+input[type="datetime-local"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* タスクテキストのスタイル */
+.task-text {
+  width: 24ch; 
+  display: inline-block;
+  white-space: normal; /* 改行を許可 */
+  overflow-wrap: break-word; /* 単語が長すぎる場合に折り返しを許可 */
+  margin-right: 10px; /* タスクテキストと他の要素の間に余白を設定 */
+  font-family: monospace; /* 各文字が同じ幅を占めるフォントを使用 */
+}
+
+/* フェードイン・フェードアウト用のトランジション */
+.task-item {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+
+
+
+
+/* 作成日時のスタイル */
+.creation-date {
+  font-size: 0.85em; /* 作成日時の文字サイズを小さく設定 */
+  color: #666; /* 文字色をグレーに設定して目立たせすぎない */
+  display: block; /* 作成日時を新しい行に表示 */
+  margin-left: 10px; /* タスクテキストから少しインデント */
+  margin-bottom: 5px; /* 作成日時と期限の間に余白を設定 */
+}
+
+/* 期限のスタイル */
+.deadline {
+  font-size: 0.85em; /* 期限の文字サイズを小さく設定 */
+  color: #666; /* 文字色をグレーに設定して目立たせすぎない */
+  display: block; /* 期限を新しい行に表示 */
+  margin-left: 10px; /* タスクテキストから少しインデント */
+}
+
+
